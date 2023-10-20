@@ -17,7 +17,7 @@ int main() {
 
     for (uint i = 0; i < 24; i = i + 1) {
         long flag = recursion(key_global_0[i], 0x4B7D33);
-        printf("%s",(char *)&flag);
+        printf("%s", &flag);
     }
 
     return 0;
