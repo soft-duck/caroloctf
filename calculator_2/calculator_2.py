@@ -1,6 +1,4 @@
-from secret import FLAG
-
-# FLAG = int.from_bytes(b"erstictf{REDACTED}", "big")
+FLAG = int.from_bytes(b"erstictf{REDACTED}", "big")
 
 ops = {"add": "+", "sub": "-", "mul": "*", "div": "//"}
 
