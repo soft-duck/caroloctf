@@ -20,10 +20,37 @@ int main(int argc, char **argv) {
 
     // Direct memory access works
     /*
-    char overflow = 127;
-    for (char i = 121; i < 126; i += 1) {
+    char rel_offset = 0;
+    char overflow = 127 - rel_offset;
+    for (int i = 121 + rel_offset; i < 126 + rel_offset; i += 1) {
         char test = overflow + i;
+        printf("index: %ld\n", (long)test);
         long binky = values[test];
+        for (int j = 0; j < 8; ++j) {
+            char c = binky >> (j * 8);
+            printf("%c", c);
+        }
+        printf("\n");
+        //printf("%ld", binky);
+    }
+    return 0;
+     */
+
+
+    // Scrambled access through summation needs to be compensated for,
+    // by first remembering all values coming before our targeted negative index of 121
+    // such that we can calculate the true value for anything before 121
+    // such that the values from 121 to 126 can be adjusted for their real value
+    /*
+     char rel_offset = 64;
+    char overflow = 127 - rel_offset;
+    for (int i = 121 + rel_offset; i < 126 + rel_offset; i += 1) {
+        char end = overflow + i;
+        long binky = 0;
+        for (char x = overflow; x != end; x++) {
+            binky += values[x];
+            //printf("%ld \n", values[x]);
+        }
         for (int j = 0; j < 8; ++j) {
             char c = binky >> (j * 8);
             printf("%c", c);
@@ -31,25 +58,7 @@ int main(int argc, char **argv) {
         //printf("%ld", binky);
     }
     return 0;
-     */
-
-    // Scrambled access through summation needs to be compensated for somehow
-    char overflow = 127;
-    for (char i = 121; i < 126; i += 1) {
-        char end = overflow + i;
-        long binky = 0;
-        for (char x = overflow; x != end; x++) {
-            binky += values[x];
-            printf("%ld \n", values[x]);
-        }
-        for (int j = 0; j < 8; ++j) {
-            char c = binky >> (j * 8);
-            //printf("%c", c);
-        }
-        //printf("%ld", binky);
-    }
-
-    return 0;
+    */
 
 
     // run application
